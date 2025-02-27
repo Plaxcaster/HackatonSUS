@@ -34,8 +34,8 @@ public class CadastroDoencaControllerTest {
 
     @Test
     void verificaComportamentoComCIDZerado() {
-        assertThat(controller.consultarDadosParaColeta(0)).isNotNull();
-        assertThat(controller.consultarDadosParaColeta(0).isEmpty());
+        assertThat(controller.consultarDadosParaColeta("")).isNotNull();
+        assertThat(controller.consultarDadosParaColeta("").isEmpty());
     }
 
     @Test
@@ -44,11 +44,13 @@ public class CadastroDoencaControllerTest {
         listaEsperada.add("cor favorita");
         listaEsperada.add("signo");
 
-        when(useCases.consultaDadosParaColeta(1)).thenReturn(listaEsperada);
+        when(useCases.consultaDadosParaColeta("A70")).thenReturn(listaEsperada);
 
-        assertThat(controller.consultarDadosParaColeta(0)).isNotNull();
-        assertThat(controller.consultarDadosParaColeta(1)).isNotEmpty();
-        assertThat(controller.consultarDadosParaColeta(1)).isEqualTo(listaEsperada);
+
+        assertThat(controller.consultarDadosParaColeta("AAA")).isNotNull();
+        assertThat(controller.consultarDadosParaColeta("AAA")).isEmpty();
+        assertThat(controller.consultarDadosParaColeta("A70")).isNotEmpty();
+        assertThat(controller.consultarDadosParaColeta("A70")).isEqualTo(listaEsperada);
 
     }
 }

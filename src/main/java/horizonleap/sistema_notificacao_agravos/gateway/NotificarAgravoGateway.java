@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import horizonleap.sistema_notificacao_agravos.controller.CadastroDoencaController;
+import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import io.swagger.v3.oas.annotations.Operation;
 
 @RestController
@@ -28,7 +29,7 @@ public class NotificarAgravoGateway {
 
    @Operation(summary = "Consultar dados para coleta de um doença especifica" ,  tags = "Notificar Agravo")
    @GetMapping("/{cid_doenca}")
-    public ResponseEntity<List<String>> dadosParaColeta(@PathVariable Integer cid_doenca) {
+    public ResponseEntity<List<InformacaoAgravoEntity>> dadosParaColeta(@PathVariable String cid_doenca) {
 
         return ResponseEntity.ok(cadastroDoencaController.consultarDadosParaColeta(cid_doenca));
     }
