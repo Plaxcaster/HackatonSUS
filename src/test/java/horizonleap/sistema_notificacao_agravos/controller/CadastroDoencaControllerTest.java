@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import horizonleap.sistema_notificacao_agravos.useCases.CadastroDoencaUseCases;
 
 public class CadastroDoencaControllerTest {
@@ -40,9 +42,9 @@ public class CadastroDoencaControllerTest {
 
     @Test
     void verificaComportamentoParaCidValido() {
-        List<String> listaEsperada = new ArrayList<>();
-        listaEsperada.add("cor favorita");
-        listaEsperada.add("signo");
+        List<InformacaoAgravoEntity> listaEsperada = new ArrayList<>();
+        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 1"));
+        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 2"));
 
         when(useCases.consultaDadosParaColeta("A70")).thenReturn(listaEsperada);
 
