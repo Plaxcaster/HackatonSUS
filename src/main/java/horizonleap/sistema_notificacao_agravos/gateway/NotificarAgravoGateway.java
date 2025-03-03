@@ -17,18 +17,18 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping("/notificarAgravo")
 public class NotificarAgravoGateway {
 
-    @Autowired 
+    @Autowired
     CadastroDoencaController cadastroDoencaController;
 
-   @Operation(summary = "Hello word" ,  tags = "Notificar Agravo")
-   @GetMapping("/Helloworld")
+    @Operation(summary = "Hello word", tags = "Notificar Agravo")
+    @GetMapping("/Helloworld")
     public ResponseEntity<String> HelloWorld() {
 
         return ResponseEntity.ok("Hello World!");
     }
 
-   @Operation(summary = "Consultar dados para coleta de um doença especifica" ,  tags = "Notificar Agravo")
-   @GetMapping("/{cid_doenca}")
+    @Operation(summary = "Consultar dados para coleta de um doença especifica", tags = "Notificar Agravo")
+    @GetMapping("/{cid_doenca}")
     public ResponseEntity<List<InformacaoAgravoEntity>> dadosParaColeta(@PathVariable String cid_doenca) {
 
         return ResponseEntity.ok(cadastroDoencaController.consultarDadosParaColeta(cid_doenca));
