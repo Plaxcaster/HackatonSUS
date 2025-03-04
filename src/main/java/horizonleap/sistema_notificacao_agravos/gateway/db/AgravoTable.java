@@ -1,7 +1,6 @@
 package horizonleap.sistema_notificacao_agravos.gateway.db;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 

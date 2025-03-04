@@ -1,6 +1,5 @@
 package horizonleap.sistema_notificacao_agravos.gateway;
 
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
