@@ -5,6 +5,8 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -12,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import horizonleap.sistema_notificacao_agravos.useCases.CadastroDoencaUseCases;
 
 public class CadastroDoencaControllerTest {
@@ -34,21 +37,24 @@ public class CadastroDoencaControllerTest {
 
     @Test
     void verificaComportamentoComCIDZerado() {
-        assertThat(controller.consultarDadosParaColeta(0)).isNotNull();
-        assertThat(controller.consultarDadosParaColeta(0).isEmpty());
+        assertThat(controller.consultarDadosParaColeta("")).isNotNull();
+        assertThat(controller.consultarDadosParaColeta("").isEmpty());
     }
 
     @Test
     void verificaComportamentoParaCidValido() {
-        List<String> listaEsperada = new ArrayList<>();
-        listaEsperada.add("cor favorita");
-        listaEsperada.add("signo");
+        Set<InformacaoAgravoEntity> listaEsperada = Set.of();
+        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 1"));
+        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 2"));
 
-        when(useCases.consultaDadosParaColeta(1)).thenReturn(listaEsperada);
+        when(useCases.consultaDadosParaColeta("A70")).thenReturn(listaEsperada);
 
-        assertThat(controller.consultarDadosParaColeta(0)).isNotNull();
-        assertThat(controller.consultarDadosParaColeta(1)).isNotEmpty();
-        assertThat(controller.consultarDadosParaColeta(1)).isEqualTo(listaEsperada);
+
+        assertThat(controller.consultarDadosParaColeta("AAA")).isNotNull();
+        assertThat(controller.consultarDadosParaColeta("AAA")).isEmpty();
+        assertThat(controller.consultarDadosParaColeta("A70")).isNotEmpty();
+        assertThat(controller.consultarDadosParaColeta("A70")).isEqualTo(listaEsperada);
 
     }
 }
+ 
