@@ -5,6 +5,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.junit.jupiter.api.AfterEach;
@@ -42,7 +43,7 @@ public class CadastroDoencaControllerTest {
 
     @Test
     void verificaComportamentoParaCidValido() {
-        List<InformacaoAgravoEntity> listaEsperada = new ArrayList<>();
+        Set<InformacaoAgravoEntity> listaEsperada = Set.of();
         listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 1"));
         listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 2"));
 
@@ -56,3 +57,4 @@ public class CadastroDoencaControllerTest {
 
     }
 }
+ 

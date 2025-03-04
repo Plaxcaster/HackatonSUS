@@ -2,6 +2,7 @@ package horizonleap.sistema_notificacao_agravos.useCases;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.stereotype.Component;
@@ -13,7 +14,7 @@ import horizonleap.sistema_notificacao_agravos.entity.AgravoEntity.AgravoEntityB
 @Component
 public class CadastroDoencaUseCases {
 
-    public List<InformacaoAgravoEntity> consultaDadosParaColeta(String cid_doenca) {
+    public Set<InformacaoAgravoEntity> consultaDadosParaColeta(String cid_doenca) {
         
         return mockDeConsultaDeCid(cid_doenca).getInformacoesEsperadas();
     }
@@ -23,7 +24,7 @@ public class CadastroDoencaUseCases {
         var info1 = new InformacaoAgravoEntity(UUID.randomUUID(), "contato com animais");
         var info2 = new InformacaoAgravoEntity(UUID.randomUUID(), "contato com plantas carnivoras");
 
-        builder.informacoesEsperadas(Arrays.asList(info1 , info2));
+        builder.informacoesEsperadas(Set.of(info1 , info2));
 
         if (cid.equals("A01")){
             builder.nome("Febra Tifoide");

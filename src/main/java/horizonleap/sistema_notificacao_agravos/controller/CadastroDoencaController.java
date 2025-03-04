@@ -1,8 +1,6 @@
 package horizonleap.sistema_notificacao_agravos.controller;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Pattern;
+import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
@@ -18,9 +16,9 @@ public class CadastroDoencaController {
         this.cadastroUseCases = usecase;
     }
 
-    public List<InformacaoAgravoEntity> consultarDadosParaColeta(String cid_doenca) {
+    public Set<InformacaoAgravoEntity> consultarDadosParaColeta(String cid_doenca) {
         if (cid_doenca.isBlank()) {
-            return Arrays.asList();
+            return Set.of();
         }
         // TODO Criar validação do formato do CID
         return cadastroUseCases.consultaDadosParaColeta(cid_doenca);

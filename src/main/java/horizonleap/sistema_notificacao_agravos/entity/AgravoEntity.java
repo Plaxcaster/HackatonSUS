@@ -1,6 +1,6 @@
 package horizonleap.sistema_notificacao_agravos.entity;
 
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +17,7 @@ public class AgravoEntity {
     private UUID id;
     private String CID;
     private String nome;
-    private List<InformacaoAgravoEntity> informacoesEsperadas;
+    private Set<InformacaoAgravoEntity> informacoesEsperadas;
 
     public AgravoEntity(String CID){
         this.CID = CID;
