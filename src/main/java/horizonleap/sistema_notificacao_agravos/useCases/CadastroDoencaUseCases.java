@@ -1,7 +1,5 @@
 package horizonleap.sistema_notificacao_agravos.useCases;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
