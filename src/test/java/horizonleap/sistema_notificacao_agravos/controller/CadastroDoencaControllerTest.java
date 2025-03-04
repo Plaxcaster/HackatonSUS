@@ -3,6 +3,7 @@ package horizonleap.sistema_notificacao_agravos.controller;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import horizonleap.sistema_notificacao_agravos.entity.AgravoEntity;
 import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import horizonleap.sistema_notificacao_agravos.useCases.CadastroDoencaUseCases;
 
@@ -28,6 +30,7 @@ public class CadastroDoencaControllerTest {
         openMock = MockitoAnnotations.openMocks(this);
         controller = new CadastroDoencaController(useCases);
     }
+
     @AfterEach
     void tearDown() throws Exception {
         openMock.close();
@@ -41,12 +44,12 @@ public class CadastroDoencaControllerTest {
 
     @Test
     void verificaComportamentoParaCidValido() {
-        Set<InformacaoAgravoEntity> listaEsperada = Set.of();
-        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 1"));
-        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 2"));
+        Set<InformacaoAgravoEntity> listaEsperada = new HashSet<InformacaoAgravoEntity>();
+        var agravo = new AgravoEntity();
+        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 1", agravo));
+        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 2", agravo));
 
         when(useCases.consultaDadosParaColeta("A70")).thenReturn(listaEsperada);
-
 
         assertThat(controller.consultarDadosParaColeta("AAA")).isNotNull();
         assertThat(controller.consultarDadosParaColeta("AAA")).isEmpty();
@@ -55,4 +58,3 @@ public class CadastroDoencaControllerTest {
 
     }
 }
- 
