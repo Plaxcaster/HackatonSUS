@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import horizonleap.sistema_notificacao_agravos.DTO.RequisicaoRegistroAgravoDTO;
-import horizonleap.sistema_notificacao_agravos.controller.CadastroDoencaController;
+import horizonleap.sistema_notificacao_agravos.controller.CadastroAgravoController;
 import horizonleap.sistema_notificacao_agravos.controller.NotificacaoAgravoController;
+import horizonleap.sistema_notificacao_agravos.data.RequisicaoRegistroAgravo;
 import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class NotificarAgravoGateway {
 
     @Autowired
-    CadastroDoencaController cadastroDoencaController;
+    CadastroAgravoController cadastroDoencaController;
 
     @Autowired
     NotificacaoAgravoController notificacaoAgravoController;
@@ -37,7 +37,7 @@ public class NotificarAgravoGateway {
     
     @Operation(summary = "Notificar um agravo", tags = "Notificar Agravo")
     @PostMapping("/")
-    public ResponseEntity<String> postMethodName(@RequestBody RequisicaoRegistroAgravoDTO requisicao) {
+    public ResponseEntity<String> postMethodName(@RequestBody RequisicaoRegistroAgravo requisicao) {
         
         notificacaoAgravoController.registrarAgravo(requisicao);
         return ResponseEntity.ok("BLZ");

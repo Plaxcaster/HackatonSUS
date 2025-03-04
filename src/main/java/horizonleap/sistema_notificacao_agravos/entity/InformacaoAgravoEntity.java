@@ -11,6 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * Descrição de uma informação que pode ser incluída como informação adicional
@@ -18,6 +19,7 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "INFORMACOES_AGRAVO")
 public class InformacaoAgravoEntity implements Serializable {
