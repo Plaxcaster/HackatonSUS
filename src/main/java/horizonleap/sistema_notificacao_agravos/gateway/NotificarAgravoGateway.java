@@ -1,6 +1,5 @@
 package horizonleap.sistema_notificacao_agravos.gateway;
 
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +27,6 @@ public class NotificarAgravoGateway {
 
     @Autowired
     NotificacaoAgravoController notificacaoAgravoController;
-
-    @Operation(summary = "Hello word", tags = "Notificar Agravo")
-    @GetMapping("/Helloworld")
-    public ResponseEntity<String> HelloWorld() {
-
-        return ResponseEntity.ok("Hello World!");
-    }
 
     @Operation(summary = "Consultar dados para coleta de um doença especifica", tags = "Notificar Agravo")
     @GetMapping("/{cid_doenca}")

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import horizonleap.sistema_notificacao_agravos.DTO.RequisicaoRegistroAgravoDTO;
 import horizonleap.sistema_notificacao_agravos.entity.AgravoEntity;
-import horizonleap.sistema_notificacao_agravos.entity.AgravoNotificacaoEntity;
+import horizonleap.sistema_notificacao_agravos.entity.NotificacaoAgravoEntity;
 import horizonleap.sistema_notificacao_agravos.repository.AgravoRepository;
 import horizonleap.sistema_notificacao_agravos.repository.NotificacaoAgravosRepository;
 
@@ -21,19 +21,14 @@ public class NotificacaoAgravoController {
     NotificacaoAgravosRepository notificacaoRepository;
 
     public void registrarAgravo(RequisicaoRegistroAgravoDTO requisicao) {
-        notificacaoRepository.registrarAgravo(transformarRequisicaoEmEntidade(requisicao));
+        notificacaoRepository.saveAndFlush(transformarRequisicaoEmEntidade(requisicao));
 
     }
 
-    private AgravoNotificacaoEntity transformarRequisicaoEmEntidade(RequisicaoRegistroAgravoDTO registroDto) {
-        AgravoEntity agravo = cadastroDoenca.findByCID(registroDto.cid()).toAgravoEntity();
+    private NotificacaoAgravoEntity transformarRequisicaoEmEntidade(RequisicaoRegistroAgravoDTO dto) {
+        AgravoEntity agravo = cadastroDoenca.findByCID(dto.cid());
+        return new NotificacaoAgravoEntity(LocalDateTime.now(), agravo, dto.codigoCpf(), dto.codigoCep(),
+                dto.identificacaoMedico());
 
-        return AgravoNotificacaoEntity.builder()
-                .codigoCep(registroDto.codigoCep())
-                .codigoCpf(registroDto.codigoCpf())
-                .identificacaoMedico(registroDto.identificacaoMedico())
-                .horaDeRegistro(LocalDateTime.now())
-                .agravo(agravo)
-                .build();
     }
 }

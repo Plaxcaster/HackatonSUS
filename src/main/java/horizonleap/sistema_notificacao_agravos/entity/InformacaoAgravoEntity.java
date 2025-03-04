@@ -6,6 +6,9 @@ import java.util.UUID;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -15,8 +18,16 @@ import lombok.Getter;
  */
 @Getter
 @AllArgsConstructor
+@Entity
+@Table(name = "INFORMACOES_AGRAVO")
 public class InformacaoAgravoEntity implements Serializable {
 
+    @Id
+    @Column
     private UUID id;
+    @Column
     private String nome;
+    @ManyToOne
+    @JoinColumn(name = "agravo_id", nullable = false)
+    private AgravoEntity agravo;
 }
