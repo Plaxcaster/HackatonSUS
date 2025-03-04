@@ -1,5 +1,6 @@
 package horizonleap.sistema_notificacao_agravos.entity;
 
+import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 
@@ -22,7 +23,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @Table(name = "AGRAVO" )
-public class AgravoEntity {
+public class AgravoEntity implements Serializable {
     @Id
     @Column
     private UUID id;
