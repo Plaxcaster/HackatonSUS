@@ -18,7 +18,7 @@ import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import horizonleap.sistema_notificacao_agravos.useCases.CadastroDoencaUseCases;
 
 public class CadastroDoencaControllerTest {
-    private CadastroDoencaController controller;
+    private CadastroAgravoController controller;
 
     @Mock
     private CadastroDoencaUseCases useCases;
@@ -28,7 +28,7 @@ public class CadastroDoencaControllerTest {
     @BeforeEach
     void setup() {
         openMock = MockitoAnnotations.openMocks(this);
-        controller = new CadastroDoencaController(useCases);
+        controller = new CadastroAgravoController(useCases);
     }
 
     @AfterEach
