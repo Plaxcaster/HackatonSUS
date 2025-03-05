@@ -17,8 +17,8 @@ import horizonleap.sistema_notificacao_agravos.entity.AgravoEntity;
 import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import horizonleap.sistema_notificacao_agravos.useCases.CadastroDoencaUseCases;
 
-public class CadastroDoencaControllerTest {
-    private CadastroDoencaController controller;
+public class CadastroAgravoControllerTest {
+    private CadastroAgravoController controller;
 
     @Mock
     private CadastroDoencaUseCases useCases;
@@ -28,7 +28,7 @@ public class CadastroDoencaControllerTest {
     @BeforeEach
     void setup() {
         openMock = MockitoAnnotations.openMocks(this);
-        controller = new CadastroDoencaController(useCases);
+        controller = new CadastroAgravoController(useCases);
     }
 
     @AfterEach
@@ -46,8 +46,8 @@ public class CadastroDoencaControllerTest {
     void verificaComportamentoParaCidValido() {
         Set<InformacaoAgravoEntity> listaEsperada = new HashSet<InformacaoAgravoEntity>();
         var agravo = new AgravoEntity();
-        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 1", agravo));
-        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 2", agravo));
+        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 1", "chave1" , "descricao1", agravo));
+        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 2", "chave2" , "descricao2", agravo));
 
         when(useCases.consultaDadosParaColeta("A70")).thenReturn(listaEsperada);
 

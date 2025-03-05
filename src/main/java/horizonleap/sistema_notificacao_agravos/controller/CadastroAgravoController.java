@@ -4,15 +4,18 @@ import java.util.Set;
 
 import org.springframework.stereotype.Component;
 
+import horizonleap.sistema_notificacao_agravos.data.RequisicaoCadastrarAgravoDTO;
+import horizonleap.sistema_notificacao_agravos.data.RequisicaoCadastrarInformacao;
+import horizonleap.sistema_notificacao_agravos.entity.AgravoEntity;
 import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import horizonleap.sistema_notificacao_agravos.useCases.CadastroDoencaUseCases;
 
 @Component
-public class CadastroDoencaController {
+public class CadastroAgravoController {
 
     private CadastroDoencaUseCases cadastroUseCases;
 
-    public CadastroDoencaController(CadastroDoencaUseCases usecase) {
+    public CadastroAgravoController(CadastroDoencaUseCases usecase) {
         this.cadastroUseCases = usecase;
     }
 
@@ -22,6 +25,15 @@ public class CadastroDoencaController {
         }
         // TODO Criar validação do formato do CID
         return cadastroUseCases.consultaDadosParaColeta(cid_doenca);
+    }
+
+    public AgravoEntity cadastrarAgravo(RequisicaoCadastrarAgravoDTO requisicao) {
+        return cadastroUseCases.cadastrarAgravo(requisicao);
+    }
+
+    public InformacaoAgravoEntity cadastrarInformacao(RequisicaoCadastrarInformacao requisicao) {
+        return cadastroUseCases.cadastrarInformacao(requisicao);
+
     }
 
 }

@@ -4,11 +4,15 @@ import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,7 +26,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @NoArgsConstructor
-@Table(name = "AGRAVO" )
+@JsonIgnoreProperties({ "informacoesEsperadas" })
+@Table(name = "AGRAVO", uniqueConstraints = @UniqueConstraint(columnNames = "CID"))
 public class AgravoEntity implements Serializable {
     @Id
     @Column
@@ -31,11 +36,22 @@ public class AgravoEntity implements Serializable {
     private String CID;
     @Column
     private String nome;
-    @OneToMany( mappedBy = "agravo")
+    @OneToMany(mappedBy = "agravo", cascade = CascadeType.PERSIST)
     private Set<InformacaoAgravoEntity> informacoesEsperadas;
 
-    public AgravoEntity(String CID){
+    public AgravoEntity(String CID) {
         this.CID = CID;
+    }
+
+    public void adicionarInformacoes(InformacaoAgravoEntity informacao) {
+        informacao.setAgravo(this);
+        this.informacoesEsperadas.add(informacao);
+    }
+
+    @Override
+    public String toString() {
+        return "AgravoEntity [id=" + id + ", CID=" + CID + ", nome=" + nome + ",informacoes="
+                + informacoesEsperadas.size() + "]";
     }
 
 }
