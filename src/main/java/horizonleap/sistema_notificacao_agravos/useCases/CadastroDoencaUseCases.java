@@ -38,12 +38,11 @@ public class CadastroDoencaUseCases {
     public InformacaoAgravoEntity cadastrarInformacao(RequisicaoCadastrarInformacao requisicao) {
         AgravoEntity agravo = agravoRepository.findByCID(requisicao.getCid());
 
-        InformacaoAgravoEntity informacao = new InformacaoAgravoEntity( requisicao.getNome(), agravo);
+        InformacaoAgravoEntity informacao = new InformacaoAgravoEntity(requisicao.getNome(), agravo,
+                requisicao.getChaveJson(), requisicao.getDescricao());
         informacaorepository.save(informacao);
 
         agravo.adicionarInformacoes(informacao);
-        System.out.println(agravo.getId());
-        agravo.getInformacoesEsperadas().forEach(i -> System.out.println(i.toString()));
         agravoRepository.save(agravo);
 
         return informacao;
