@@ -11,7 +11,6 @@ import horizonleap.sistema_notificacao_agravos.controller.CadastroAgravoControll
 import horizonleap.sistema_notificacao_agravos.data.RequisicaoCadastrarAgravoDTO;
 import horizonleap.sistema_notificacao_agravos.data.RequisicaoCadastrarInformacao;
 import horizonleap.sistema_notificacao_agravos.entity.AgravoEntity;
-import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import io.swagger.v3.oas.annotations.Operation;
 
 @RestController

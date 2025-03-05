@@ -1,7 +1,5 @@
 package horizonleap.sistema_notificacao_agravos.gateway;
 
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +11,6 @@ import horizonleap.sistema_notificacao_agravos.controller.CadastroAgravoControll
 import horizonleap.sistema_notificacao_agravos.controller.NotificacaoAgravoController;
 import horizonleap.sistema_notificacao_agravos.data.RequisicaoRegistroAgravo;
 import horizonleap.sistema_notificacao_agravos.data.RespostaDadosParaColeta;
-import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
