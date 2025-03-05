@@ -40,6 +40,10 @@ public class InformacaoAgravoEntity implements Serializable {
     private UUID id;
     @Column
     private String nome;
+    @Column
+    private String chaveJson;
+    @Column
+    private String descricao;
     @ManyToOne
     @JoinColumn(name = "agravo_id", nullable = false)
     private AgravoEntity agravo;
@@ -47,9 +51,11 @@ public class InformacaoAgravoEntity implements Serializable {
      * @param nome
      * @param agravo
      */
-    public InformacaoAgravoEntity(String nome, AgravoEntity agravo) {
+    public InformacaoAgravoEntity(String nome, AgravoEntity agravo , String chaveJson , String descricao) {
         this.nome = nome;
         this.agravo = agravo;
+        this.chaveJson = chaveJson;
+        this.descricao = descricao;
     }
 
 }

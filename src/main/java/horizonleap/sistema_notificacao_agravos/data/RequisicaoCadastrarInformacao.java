@@ -6,4 +6,6 @@ import lombok.Data;
 public class RequisicaoCadastrarInformacao {
     private String nome;
     private String cid;
+    private String descricao;
+    private String chaveJson;
 }

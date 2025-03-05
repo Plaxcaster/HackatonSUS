@@ -46,8 +46,8 @@ public class CadastroAgravoControllerTest {
     void verificaComportamentoParaCidValido() {
         Set<InformacaoAgravoEntity> listaEsperada = new HashSet<InformacaoAgravoEntity>();
         var agravo = new AgravoEntity();
-        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 1", agravo));
-        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 2", agravo));
+        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 1", "chave1" , "descricao1", agravo));
+        listaEsperada.add(new InformacaoAgravoEntity(UUID.randomUUID(), "item 2", "chave2" , "descricao2", agravo));
 
         when(useCases.consultaDadosParaColeta("A70")).thenReturn(listaEsperada);
 
