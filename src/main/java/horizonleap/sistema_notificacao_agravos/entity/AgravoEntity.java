@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.util.Set;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -22,6 +25,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @NoArgsConstructor
+@JsonIgnoreProperties({ "informacoesEsperadas"})
 @Table(name = "AGRAVO" )
 public class AgravoEntity implements Serializable {
     @Id
@@ -31,11 +35,22 @@ public class AgravoEntity implements Serializable {
     private String CID;
     @Column
     private String nome;
-    @OneToMany( mappedBy = "agravo")
+    @OneToMany( mappedBy = "agravo" , cascade = CascadeType.PERSIST)
     private Set<InformacaoAgravoEntity> informacoesEsperadas;
 
     public AgravoEntity(String CID){
         this.CID = CID;
+    }
+
+    public void adicionarInformacoes(InformacaoAgravoEntity informacao){
+        informacao.setAgravo(this);
+        this.informacoesEsperadas.add(informacao);
+        System.out.println("tamanho: " + this.informacoesEsperadas.size());
+    }
+
+    @Override
+    public String toString() {
+        return "AgravoEntity [id=" + id + ", CID=" + CID + ", nome=" + nome + ",informacoes=" + informacoesEsperadas.size()+ "]";
     }
 
 }

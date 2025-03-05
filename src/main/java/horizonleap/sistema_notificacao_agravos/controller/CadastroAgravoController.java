@@ -5,6 +5,7 @@ import java.util.Set;
 import org.springframework.stereotype.Component;
 
 import horizonleap.sistema_notificacao_agravos.data.RequisicaoCadastrarAgravoDTO;
+import horizonleap.sistema_notificacao_agravos.data.RequisicaoCadastrarInformacao;
 import horizonleap.sistema_notificacao_agravos.entity.AgravoEntity;
 import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import horizonleap.sistema_notificacao_agravos.useCases.CadastroDoencaUseCases;
@@ -28,6 +29,11 @@ public class CadastroAgravoController {
 
     public AgravoEntity cadastrarAgravo(RequisicaoCadastrarAgravoDTO requisicao) {
         return cadastroUseCases.cadastrarAgravo(requisicao);
+    }
+
+    public InformacaoAgravoEntity cadastrarInformacao(RequisicaoCadastrarInformacao requisicao) {
+        return cadastroUseCases.cadastrarInformacao(requisicao);
+
     }
 
 }
