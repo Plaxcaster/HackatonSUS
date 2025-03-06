@@ -17,7 +17,7 @@ import horizonleap.sistema_notificacao_agravos.entity.AgravoEntity;
 import horizonleap.sistema_notificacao_agravos.entity.InformacaoAgravoEntity;
 import horizonleap.sistema_notificacao_agravos.useCases.CadastroDoencaUseCases;
 
-public class CadastroAgravoControllerTest {
+class CadastroAgravoControllerTest {
     private CadastroAgravoController controller;
 
     @Mock
