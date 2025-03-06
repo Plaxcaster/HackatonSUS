@@ -39,7 +39,7 @@ public class CadastroAgravoControllerTest {
     @Test
     void verificaComportamentoComCIDZerado() {
         assertThat(controller.consultarDadosParaColeta("")).isNotNull();
-        assertThat(controller.consultarDadosParaColeta("").isEmpty());
+        assertThat(controller.consultarDadosParaColeta("")).isEmpty();
     }
 
     @Test
