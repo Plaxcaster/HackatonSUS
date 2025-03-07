@@ -1,9 +1,13 @@
 package horizonleap.sistema_notificacao_agravos.controller;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import horizonleap.sistema_notificacao_agravos.data.RequisicaoRegistroAgravo;
 import horizonleap.sistema_notificacao_agravos.entity.AgravoEntity;
@@ -20,13 +24,22 @@ public class NotificacaoAgravoController {
     @Autowired
     NotificacaoAgravosRepository notificacaoRepository;
 
+    @Autowired
+    private ObjectMapper objectMapper;
+
     public void registrarAgravo(RequisicaoRegistroAgravo requisicao) {
         notificacaoRepository.saveAndFlush(transformarRequisicaoEmEntidade(requisicao));
     }
 
-    private NotificacaoAgravoEntity transformarRequisicaoEmEntidade(RequisicaoRegistroAgravo dto) {
+    private NotificacaoAgravoEntity transformarRequisicaoEmEntidade(RequisicaoRegistroAgravo dto)   {
         AgravoEntity agravo = agravoRepository.findByCID(dto.getCid());
+        JsonNode json;
+        try{
+            json = objectMapper.readTree(dto.getInformacoesJson().traverse());
+        } catch(IOException e ){
+            json = new ObjectMapper().createObjectNode();
+        }
         return new NotificacaoAgravoEntity(LocalDateTime.now(), agravo.getId(), dto.getCodigoCpf(), dto.getCodigoCep(),
-                dto.getIdentificacaoMedico());
+                dto.getIdentificacaoMedico() , json);
     }
 }
