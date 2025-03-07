@@ -3,7 +3,6 @@ package horizonleap.sistema_notificacao_agravos.useCases;
 import java.util.Set;
 import java.util.UUID;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import horizonleap.sistema_notificacao_agravos.data.RequisicaoCadastrarAgravoDTO;
