@@ -1,6 +1,5 @@
 package horizonleap.sistema_notificacao_agravos.gateway;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,22 +16,22 @@ import io.swagger.v3.oas.annotations.Operation;
 @RequestMapping("/cadastroAgravos")
 public class CadastroAgravosGateway {
 
-    @Autowired
-    private CadastroAgravoController controller;
+    private final CadastroAgravoController controller;
 
-        
+    public CadastroAgravosGateway(CadastroAgravoController controller) {
+        this.controller = controller;
+    }
+
     @Operation(summary = "Cadastrar um agravo", tags = "Cadastro Agravos")
     @PostMapping("/")
     public ResponseEntity<AgravoEntity> cadastrarAgravo(@RequestBody RequisicaoCadastrarAgravoDTO requisicao) {
-        
         return ResponseEntity.ok(controller.cadastrarAgravo(requisicao));
     }
-        
+
     @Operation(summary = "Vincular uma informação adicionais a um agravo", tags = "Cadastro Agravos")
     @PostMapping("/informacao")
     public ResponseEntity<String> cadastrarInformacaoAgravo(@RequestBody RequisicaoCadastrarInformacao requisicao) {
         controller.cadastrarInformacao(requisicao);
         return ResponseEntity.ok("Ok");
     }
-
 }

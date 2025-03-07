@@ -13,7 +13,7 @@ import horizonleap.sistema_notificacao_agravos.useCases.CadastroDoencaUseCases;
 @Component
 public class CadastroAgravoController {
 
-    private CadastroDoencaUseCases cadastroUseCases;
+    private final CadastroDoencaUseCases cadastroUseCases;
 
     public CadastroAgravoController(CadastroDoencaUseCases usecase) {
         this.cadastroUseCases = usecase;
