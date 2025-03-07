@@ -15,13 +15,13 @@ import io.restassured.RestAssured;
 
 @Sql("setup.sql")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class NotificarAgravoGatewayIntegrationTest {
+class NotificarAgravoGatewayIntegrationTest {
 
   @LocalServerPort
   private int port;
 
   @BeforeEach
-  public void setup(){
+  void setup(){
     RestAssured.port = port;
     RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
   }

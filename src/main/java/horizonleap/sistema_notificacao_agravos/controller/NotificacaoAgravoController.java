@@ -3,7 +3,6 @@ package horizonleap.sistema_notificacao_agravos.controller;
 import java.io.IOException;
 import java.time.LocalDateTime;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -18,11 +17,14 @@ import horizonleap.sistema_notificacao_agravos.repository.NotificacaoAgravosRepo
 @Component
 public class NotificacaoAgravoController {
 
-    @Autowired
-    AgravoRepository agravoRepository;
+    private final AgravoRepository agravoRepository;
+    private final NotificacaoAgravosRepository notificacaoRepository;
 
-    @Autowired
-    NotificacaoAgravosRepository notificacaoRepository;
+    public NotificacaoAgravoController(AgravoRepository agravoRepository,
+            NotificacaoAgravosRepository notificacaoRepository) {
+        this.agravoRepository = agravoRepository;
+        this.notificacaoRepository = notificacaoRepository;
+    }
 
     @Autowired
     private ObjectMapper objectMapper;
