@@ -19,15 +19,16 @@ public class NotificacaoAgravoController {
 
     private final AgravoRepository agravoRepository;
     private final NotificacaoAgravosRepository notificacaoRepository;
+    private final ObjectMapper objectMapper;
 
     public NotificacaoAgravoController(AgravoRepository agravoRepository,
-            NotificacaoAgravosRepository notificacaoRepository) {
+            NotificacaoAgravosRepository notificacaoRepository,
+            ObjectMapper objectMapper) {
         this.agravoRepository = agravoRepository;
         this.notificacaoRepository = notificacaoRepository;
+        this.objectMapper = objectMapper;
     }
 
-    @Autowired
-    private ObjectMapper objectMapper;
 
     public void registrarAgravo(RequisicaoRegistroAgravo requisicao) {
         notificacaoRepository.saveAndFlush(transformarRequisicaoEmEntidade(requisicao));

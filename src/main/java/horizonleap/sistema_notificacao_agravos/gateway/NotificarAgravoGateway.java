@@ -22,7 +22,6 @@ public class NotificarAgravoGateway {
 
     
     private final CadastroAgravoController cadastroDoencaController;
-
     private final NotificacaoAgravoController notificacaoAgravoController;
 
     public NotificarAgravoGateway (CadastroAgravoController cadastroDoencaController,
