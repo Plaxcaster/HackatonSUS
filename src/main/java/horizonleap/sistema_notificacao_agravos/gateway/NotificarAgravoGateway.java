@@ -20,11 +20,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/notificarAgravo")
 public class NotificarAgravoGateway {
 
-    @Autowired
-    CadastroAgravoController cadastroDoencaController;
+    
+    private final CadastroAgravoController cadastroDoencaController;
+    private final NotificacaoAgravoController notificacaoAgravoController;
 
-    @Autowired
-    NotificacaoAgravoController notificacaoAgravoController;
+    public NotificarAgravoGateway (CadastroAgravoController cadastroDoencaController,
+        NotificacaoAgravoController notificacaoAgravoController){
+        this.cadastroDoencaController = cadastroDoencaController;
+        this.notificacaoAgravoController = notificacaoAgravoController;
+    }
 
     @Operation(summary = "Consultar dados para coleta de um doença especifica", tags = "Notificar Agravo")
     @GetMapping("/{cid_doenca}")
