@@ -13,11 +13,11 @@ public class RespostaDadosParaColeta {
 
     public static RespostaDadosParaColeta toRespostaDadosParaColeta(Collection<InformacaoAgravoEntity> colecao) {
         var resposta = new RespostaDadosParaColeta();
-        Set<RespostaInformacaoAgravo> conjunto = new HashSet<>();
+        Set<RespostaInformacaoAgravo> dadosParaColeta = new HashSet<>();
 
-        colecao.forEach(item -> conjunto.add(RespostaInformacaoAgravo.toRespostaInformacaoAgravo(item)));
-        resposta.setConjunto(conjunto);
-        
+        colecao.forEach(item -> dadosParaColeta.add(RespostaInformacaoAgravo.toRespostaInformacaoAgravo(item)));
+        resposta.setConjunto(dadosParaColeta);
+
         return resposta;
     }
 }

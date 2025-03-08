@@ -1,3 +1,6 @@
+
+DELETE FROM INFORMACOES_AGRAVO;
+
 DELETE FROM AGRAVO;
 
 
@@ -7,10 +10,8 @@ INSERT INTO  AGRAVO ( ID , CID , NOME )  VALUES ( '945e974d-011d-4351-80da-95947
 
 INSERT INTO  AGRAVO ( ID , CID , NOME )  VALUES ( 'db37ce52-a826-4fbe-b182-f352e3dd0849' , 'A03' , 'Agravo A03' );
 
-DELETE FROM INFORMACOES_AGRAVO;
+INSERT INTO informacoes_agravo(id , chave_json, descricao, nome, agravo_id) VALUES ( 'db37ce52-a826-4faa-b182-f352e3dd0849' , 'porco', 'Contato com porco', 'Contato com porco', '8183bb5e-de6f-4bef-8f54-3f0aec4e8a1d');
+INSERT INTO informacoes_agravo(id , chave_json, descricao, nome, agravo_id) VALUES ( 'db37ce52-a826-4fbb-b182-f352e3dd0849' ,  'galinha', 'Contato com galinha', 'Contato com galinha', '8183bb5e-de6f-4bef-8f54-3f0aec4e8a1d');
+INSERT INTO informacoes_agravo(id , chave_json, descricao, nome, agravo_id) VALUES ( 'db37ce52-a826-4fcc-b182-f352e3dd0849' ,  'gado', 'Contato com gado', 'Contato com gado', '8183bb5e-de6f-4bef-8f54-3f0aec4e8a1d');
 
-INSERT INTO INFORMACOES_AGRAVO (AGRAVO_ID , ID , NOME ) VALUES ( '8183bb5e-de6f-4bef-8f54-3f0aec4e8a1d' , '09cf5cf6-0050-491c-9ce4-9d3553feafb9' , 'Contato com galinha');
-INSERT INTO INFORMACOES_AGRAVO (AGRAVO_ID , ID , NOME ) VALUES ( '8183bb5e-de6f-4bef-8f54-3f0aec4e8a1d' , '61d26c74-2d69-4611-a8d2-51c3f89a9ea0' , 'Contato com gado');
-INSERT INTO INFORMACOES_AGRAVO (AGRAVO_ID , ID , NOME ) VALUES ( '8183bb5e-de6f-4bef-8f54-3f0aec4e8a1d' , '24f686c9-d4af-4573-8318-94d99708a182' , 'Contato com porco');
-
-INSERT INTO INFORMACOES_AGRAVO (AGRAVO_ID , ID , NOME ) VALUES ( '945e974d-011d-4351-80da-9594745b192d' , '0f52776b-40ef-4a05-bbb2-645b489401c8' , 'Viagem para o exterior nos últimos 5 meses');
+INSERT INTO informacoes_agravo(id ,  chave_json, descricao, nome, agravo_id) VALUES ( 'db37ce52-a826-4fdd-b182-f352e3dd0849' , 'exterior', 'Viagem para o exterior nos últimos 5 meses', 'Viagem para o exterior nos últimos 5 meses', '945e974d-011d-4351-80da-9594745b192d');

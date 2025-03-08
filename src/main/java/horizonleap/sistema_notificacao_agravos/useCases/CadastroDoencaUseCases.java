@@ -1,8 +1,10 @@
 package horizonleap.sistema_notificacao_agravos.useCases;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Component;
 
 import horizonleap.sistema_notificacao_agravos.data.RequisicaoCadastrarAgravoDTO;
@@ -18,15 +20,17 @@ public class CadastroDoencaUseCases {
     private final AgravoRepository agravoRepository;
     private final InformacaoAgravoRepository informacaorepository;
 
-    public CadastroDoencaUseCases (AgravoRepository agravoRepository,
-        InformacaoAgravoRepository informacaorepository){
-            this.informacaorepository = informacaorepository;
-            this.agravoRepository = agravoRepository;
-        }
+    public CadastroDoencaUseCases(AgravoRepository agravoRepository,
+            InformacaoAgravoRepository informacaorepository) {
+        this.informacaorepository = informacaorepository;
+        this.agravoRepository = agravoRepository;
+    }
 
-    public Set<InformacaoAgravoEntity> consultaDadosParaColeta(String cid_doenca) {
+    public Set<InformacaoAgravoEntity> consultaDadosParaColeta(String cid_doenca) throws ObjectNotFoundException {
 
-        return agravoRepository.findByCID(cid_doenca).getInformacoesEsperadas();
+        return Optional.ofNullable(agravoRepository.findByCID(cid_doenca))
+                .map(resultado -> resultado.getInformacoesEsperadas())
+                .orElseThrow(() -> new ObjectNotFoundException(new InformacaoAgravoEntity(), "informações do agravo"));
     }
 
     public AgravoEntity cadastrarAgravo(RequisicaoCadastrarAgravoDTO requisicao) {

@@ -1,5 +1,6 @@
 package horizonleap.sistema_notificacao_agravos.gateway;
 
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +26,11 @@ public class CadastroAgravosGateway {
     @Operation(summary = "Cadastrar um agravo", tags = "Cadastro Agravos")
     @PostMapping("/")
     public ResponseEntity<AgravoEntity> cadastrarAgravo(@RequestBody RequisicaoCadastrarAgravoDTO requisicao) {
-        return ResponseEntity.ok(controller.cadastrarAgravo(requisicao));
+        try {
+            return ResponseEntity.ok(controller.cadastrarAgravo(requisicao));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatusCode.valueOf(409)).build();
+        }
     }
 
     @Operation(summary = "Vincular uma informação adicionais a um agravo", tags = "Cadastro Agravos")

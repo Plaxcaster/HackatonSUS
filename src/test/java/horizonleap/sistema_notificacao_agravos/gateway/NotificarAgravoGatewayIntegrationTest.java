@@ -27,11 +27,69 @@ class NotificarAgravoGatewayIntegrationTest {
   }
 
     @Test
-    void testDadosParaColeta() {
+    void deveConseguirBuscarCidExistente() {
+      given().filter(new AllureRestAssured())
+      .contentType(MediaType.APPLICATION_JSON_VALUE)
+      .when()
+      .get("/notificarAgravo/A03")
+      .then()
+      .statusCode(HttpStatus.SC_OK);
+    }
+
+    @Test
+    void deveConseguirBuscarCidComInformacoesCadastradas() {
       given().filter(new AllureRestAssured())
       .contentType(MediaType.APPLICATION_JSON_VALUE)
       .when()
       .get("/notificarAgravo/A01")
+      .then()
+      .statusCode(HttpStatus.SC_OK);
+    }
+
+    @Test
+    void deveRetornarObjectNotFoundSeCidNaoEstiverNoCadastro() {
+      given().filter(new AllureRestAssured())
+      .contentType(MediaType.APPLICATION_JSON_VALUE)
+      .when()
+      .get("/notificarAgravo/A04")
+      .then()
+      .statusCode(HttpStatus.SC_NOT_FOUND);
+    }
+
+    @Test
+    void deveConseguirRegistrarAgravoSeminformacoesJson() {
+      String body = "{\r\n" + //
+                "  \"codigoCpf\": \"04740003112\",\r\n" + //
+                "  \"codigoCep\": \"73020012\",\r\n" + //
+                "  \"identificacaoMedico\": 555555,\r\n" + //
+                "  \"cid\": \"A03\",\r\n" + //
+                "  \"informacoesJson\": {}\r\n" + //
+                "}";
+
+      given().filter(new AllureRestAssured())
+      .contentType(MediaType.APPLICATION_JSON_VALUE)
+      .body(body)
+      .when()
+      .post("/notificarAgravo/")
+      .then()
+      .statusCode(HttpStatus.SC_OK);
+    }
+
+    @Test
+    void deveConseguirRegistrarAgravoCominformacoesJson() {
+      String body = "{\r\n" + //
+                "  \"codigoCpf\": \"04740003112\",\r\n" + //
+                "  \"codigoCep\": \"73020012\",\r\n" + //
+                "  \"identificacaoMedico\": 555555,\r\n" + //
+                "  \"cid\": \"A02\",\r\n" + //
+                "  \"informacoesJson\": {\"exterior\": \"0\"}\r\n" + //
+                "}";
+
+      given().filter(new AllureRestAssured())
+      .contentType(MediaType.APPLICATION_JSON_VALUE)
+      .body(body)
+      .when()
+      .post("/notificarAgravo/")
       .then()
       .statusCode(HttpStatus.SC_OK);
     }
